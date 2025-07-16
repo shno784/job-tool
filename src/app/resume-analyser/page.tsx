@@ -15,7 +15,7 @@ export default function UploadPage() {
       setFile(f);
       const data = new FormData();
       data.append("file", f);
-
+      console.log("This is data bro ", data);
       try {
         const res = await axios.post("/api/process-document", data, {
           headers: { "Content-Type": "multipart/form-data" },
