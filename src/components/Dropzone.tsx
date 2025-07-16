@@ -47,7 +47,7 @@ export function FileDropzone({ onFileChange, file }: FileDropzoneProps) {
         <p>Drop it like it’s hot… 🔥</p>
       ) : (
         <p>
-          Drag & drop a PDF or DOCX here, or{" "}
+          Drag & drop a DOCX file here, or{" "}
           <Button onClick={() => {}}>click to select</Button>
         </p>
       )}
