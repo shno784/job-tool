@@ -3,7 +3,6 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
-import { BulletList, OrderedList } from "@tiptap/extension-list";
 import MenuBar from "./MenuBar";
 import { useEffect, useRef } from "react";
 
@@ -15,15 +14,16 @@ export default function TextEditor({ content, onUpdate }: TextEditorProps) {
   const hasLoaded = useRef(false);
   const editor = useEditor({
     extensions: [
-      StarterKit,
-      BulletList.configure({
-        HTMLAttributes: {
-          class: "list-disc ml-3",
+      StarterKit.configure({
+        bulletList: {
+          HTMLAttributes: {
+            class: "list-disc ml-3",
+          },
         },
-      }),
-      OrderedList.configure({
-        HTMLAttributes: {
-          class: "list-decimal ml-3",
+        orderedList: {
+          HTMLAttributes: {
+            class: "list-decimal ml-3",
+          },
         },
       }),
       TextAlign.configure({
