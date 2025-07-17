@@ -10,6 +10,9 @@ import { Input } from "@/components/ui/input";
 import TextEditor from "@/components/text-editor";
 import CoverletterLoading from "./loading";
 
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+
 export default function TailorResume() {
   const [file, setFile] = useState<File | null>(null);
   const [jobDesc, setJobDesc] = useState("");
@@ -68,62 +71,61 @@ export default function TailorResume() {
     }
   }, [html]);
 
+  if (isLoading) return <CoverletterLoading />;
+
   return (
-    <>
-      {isLoading ? (
-        <CoverletterLoading />
-      ) : (
-        <div className="space-y-6">
+    <div className="max-w-3xl mx-auto space-y-8 py-8">
+      {/* Upload + Job Description Form */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Tailor Your Resume</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
           <FileDropzone onFileChange={setFile} file={file} />
 
-          <div>
-            <Label htmlFor="jobDesc" className="ml-20 block font-medium">
+          <div className="space-y-1">
+            <Label htmlFor="jobDesc" className="block font-medium">
               Job Description
             </Label>
-            <div className="flex space-x-5">
+            <div className="flex space-x-4">
               <Input
                 id="jobDesc"
-                className="ml-20 mt-1 w-full border rounded p-2 max-w-[50%]"
                 value={jobDesc}
                 onChange={(e) => setJobDesc(e.target.value)}
                 placeholder="Paste the job description here…"
+                className="flex-1"
               />
-              <Button
-                onClick={handleSubmit}
-                className="px-4 py-2 bg-blue-600 text-white rounded"
-              >
-                Tailor My Resume
-              </Button>
+              <Button onClick={handleSubmit}>Tailor My Resume</Button>
             </div>
           </div>
+        </CardContent>
+      </Card>
 
-          {html && (
-            <div className="mt-8">
-              <h2 className="ml-[10%] text-xl font-semibold mb-4">
-                Customised Resume Preview
-              </h2>
-              <div className="ml-[10%] max-w-[70%] border p-4 bg-white">
+      {html && (
+        <>
+          <Separator />
+
+          {/* Customized Resume Preview */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Customized Resume Preview</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="border p-4 bg-white">
                 <TextEditor content={html} onUpdate={setHtml} />
               </div>
-
-              <div className="mt-4 flex space-x-2 ml-[10%]">
-                <Button
-                  onClick={handleDownloadPdf}
-                  className="px-4 py-2 bg-green-600 text-white rounded"
-                >
+              <div className="flex space-x-4">
+                <Button onClick={handleDownloadPdf} variant="secondary">
                   Download PDF
                 </Button>
-                <Button
-                  onClick={() => window.print()}
-                  className="px-4 py-2 bg-gray-600 text-white rounded"
-                >
+                <Button onClick={() => window.print()} variant="outline">
                   Print / Save as PDF
                 </Button>
               </div>
-            </div>
-          )}
-        </div>
+            </CardContent>
+          </Card>
+        </>
       )}
-    </>
+    </div>
   );
 }
