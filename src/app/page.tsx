@@ -45,12 +45,13 @@ export default function HomePage() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Job Matcher</CardTitle>
+              <CardTitle>Resume Tailor</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Paste in any job description and get a match score against your
-                resume—see exactly what’s missing.
+                Paste a job description along with your resume and get back a
+                version that’s custom-crafted to highlight exactly what that
+                employer wants.
               </CardDescription>
             </CardContent>
           </Card>

@@ -55,7 +55,7 @@ export default function Navbar() {
           <NavigationMenuList className="flex space-x-4">
             {[
               ["Resume Analyzer", "/resume-analyser"],
-              ["Job Matcher", "/job-matcher"],
+              ["Tailor Resume", "/resume-tailor"],
               ["Cover Letter", "/cover-letter"],
               ["Dashboard", "/dashboard"],
             ].map(([label, href]) => (
